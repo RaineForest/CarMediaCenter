@@ -1,3 +1,4 @@
+*.o
 tars/
 festival/
 speech_tools/
