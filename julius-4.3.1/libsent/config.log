@@ -1,0 +1,92 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:731: checking host system type
+configure:753: checking host specific optimization flag
+configure:769: checking for gcc
+configure:882: checking whether the C compiler (gcc -O6 -fomit-frame-pointer ) works
+configure:898: gcc -o conftest -O6 -fomit-frame-pointer   conftest.c  1>&5
+configure:924: checking whether the C compiler (gcc -O6 -fomit-frame-pointer ) is a cross-compiler
+configure:929: checking whether we are using GNU C
+configure:957: checking whether gcc accepts -g
+configure:989: checking how to run the C preprocessor
+configure:1081: checking for a BSD compatible install
+configure:1136: checking for rm
+configure:1171: checking for ar
+configure:1206: checking for ranlib
+configure:1234: checking for Cygwin environment
+configure:1267: checking for mingw32 environment
+configure:1298: checking for executable suffix
+configure:1336: checking for ANSI C header files
+configure:1443: checking for unistd.h
+configure:1453: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1481: checking whether byte ordering is bigendian
+configure:1499: gcc -c -O6 -fomit-frame-pointer  conftest.c 1>&5
+configure:1514: gcc -c -O6 -fomit-frame-pointer  conftest.c 1>&5
+configure: In function 'main':
+configure:1509:2: error: unknown type name 'not'
+  not big endian
+  ^
+configure:1509:10: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'endian'
+  not big endian
+          ^
+configure: failed program was:
+#line 1503 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/param.h>
+int main() {
+
+#if BYTE_ORDER != BIG_ENDIAN
+ not big endian
+#endif
+; return 0; }
+configure:1571: checking for working const
+configure:1646: checking for socklen_t
+configure:1657: gcc -c -O6 -fomit-frame-pointer  conftest.c 1>&5
+configure:1673: checking for gethostbyname
+configure:1768: checking for connect
+configure:1895: checking for strcasecmp
+configure:1923: gcc -o conftest -O6 -fomit-frame-pointer   conftest.c  1>&5
+configure:1907:6: warning: conflicting types for built-in function 'strcasecmp'
+ char $ac_func();
+      ^
+configure:1950: checking for sleep
+configure:1978: gcc -o conftest -O6 -fomit-frame-pointer   conftest.c  1>&5
+configure:2016: checking for alsa/asoundlib.h
+configure:2026: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:2100: checking for sys/soundcard.h
+configure:2110: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:2187: checking for esd.h
+configure:2197: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:2193:17: fatal error: esd.h: No such file or directory
+ #include <$ac_hdr>
+                 ^
+compilation terminated.
+configure: failed program was:
+#line 2192 "configure"
+#include "confdefs.h"
+#include <esd.h>
+configure:2228: checking for pa_simple_new in -lpulse-simple
+configure:2247: gcc -o conftest -O6 -fomit-frame-pointer   conftest.c -lpulse-simple   1>&5
+configure:2266: checking for pulse/simple.h
+configure:2276: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:2309: checking for default input device type
+configure:2976: checking for DatLink/NetAudio support
+configure:2990: gcc -E  -Iauto/include conftest.c >/dev/null 2>conftest.out
+configure:2986:22: fatal error: netaudio.h: No such file or directory
+ #include <netaudio.h>
+                      ^
+compilation terminated.
+configure: failed program was:
+#line 2985 "configure"
+#include "confdefs.h"
+#include <netaudio.h>
+configure:3016: checking for deflate in -lz
+configure:3035: gcc -o conftest -O6 -fomit-frame-pointer   conftest.c -lz   1>&5
+configure:3054: checking for zlib.h
+configure:3064: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:3156: checking for sf_open in -lsndfile
+configure:3175: gcc -o conftest -O6 -fomit-frame-pointer   conftest.c -lsndfile   1>&5
+configure:3194: checking for sndfile.h
+configure:3204: gcc -E  conftest.c >/dev/null 2>conftest.out

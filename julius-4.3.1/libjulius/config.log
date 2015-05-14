@@ -1,0 +1,74 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:1011: checking host system type
+configure:1033: checking host-specific optimization flag
+configure:1049: checking for gcc
+configure:1162: checking whether the C compiler (gcc -O6 -fomit-frame-pointer ) works
+configure:1178: gcc -o conftest -O6 -fomit-frame-pointer   conftest.c  1>&5
+configure:1204: checking whether the C compiler (gcc -O6 -fomit-frame-pointer ) is a cross-compiler
+configure:1209: checking whether we are using GNU C
+configure:1237: checking whether gcc accepts -g
+configure:1269: checking how to run the C preprocessor
+configure:1361: checking for a BSD compatible install
+configure:1416: checking for rm
+configure:1451: checking for ar
+configure:1486: checking for ranlib
+configure:1514: checking for Cygwin environment
+configure:1547: checking for mingw32 environment
+configure:1578: checking for executable suffix
+configure:1611: checking for ANSI C header files
+configure:1716: checking for working const
+configure:1792: checking return type of signal handlers
+configure:1814: gcc -c -O6 -fomit-frame-pointer  conftest.c 1>&5
+configure:1833: checking for dlopen
+configure:1861: gcc -o conftest -O6 -fomit-frame-pointer   conftest.c  1>&5
+/tmp/ccZ9AzJD.o: In function `main':
+conftest.c:(.text.startup+0x7): undefined reference to `dlopen'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 1838 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char dlopen(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char dlopen();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_dlopen) || defined (__stub___dlopen)
+choke me
+#else
+dlopen();
+#endif
+
+; return 0; }
+configure:1879: checking for dlopen in -ldl
+configure:1898: gcc -o conftest -O6 -fomit-frame-pointer   conftest.c -ldl   1>&5
+configure:1965: checking for POSIX thread library in -lpthread
+configure:1976: gcc -o conftest -O6 -fomit-frame-pointer   conftest.c -ldl  -lpthread 1>&5
+configure: In function 'main':
+configure:1972:15: warning: passing argument 1 of 'pthread_equal' makes integer from pointer without a cast
+ pthread_equal(NULL,NULL);
+               ^
+In file included from /usr/include/features.h:365:0,
+                 from /usr/include/pthread.h:21,
+                 from configure:1970:
+/usr/include/pthread.h:1155:1: note: expected 'pthread_t' but argument is of type 'void *'
+ __NTH (pthread_equal (pthread_t __thread1, pthread_t __thread2))
+ ^
+configure:1972:20: warning: passing argument 2 of 'pthread_equal' makes integer from pointer without a cast
+ pthread_equal(NULL,NULL);
+                    ^
+In file included from /usr/include/features.h:365:0,
+                 from /usr/include/pthread.h:21,
+                 from configure:1970:
+/usr/include/pthread.h:1155:1: note: expected 'pthread_t' but argument is of type 'void *'
+ __NTH (pthread_equal (pthread_t __thread1, pthread_t __thread2))
+ ^
