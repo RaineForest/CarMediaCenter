@@ -4,8 +4,6 @@
 
 #include <festival/festival.h>
 
-#define TTS_USE_PULSE
-
 #define TTS_HEAP_SIZE 210000
 
 namespace TTS {
