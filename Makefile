@@ -1,6 +1,6 @@
 
-INCLUDES = -I./festival/src/include -I./speech_tools/include
-LIBDIRS = -L./festival/src/lib -L./speech_tools/lib
+INCLUDES = #-I./festival/src/include -I./speech_tools/include
+LIBDIRS = #-L./festival/src/lib -L./speech_tools/lib
 LIBS = -lFestival -lestools -lestbase -leststring -lncurses
 
 default:

@@ -1,5 +1,5 @@
 
-#include "festival.h"
+#include <festival/festival.h>
 
 #define USE_PULSE
 
