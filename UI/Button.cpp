@@ -105,16 +105,24 @@ void Button::setShape(int ngon, float rot, float rad) {
 	}
 }
 
-void Button::setDraw(void (*func)(void)) {
+void Button::setDraw(BtnDrawFunc func) {
 	draw = func;
 }
 
-void Button::setUpdate(void (*func)(float)) {
+void Button::setUpdate(BtnUpdateFunc func) {
 	update = func;
 }
 
-void Button::setAction(void (*func)(void)) {
+void Button::setAction(BtnActionFunc func) {
 	action = func;
+}
+
+////////////////////////////////////////////////////////////////
+
+BtnDrawFunc btnSolidColor(float r, float g, float b) {
+	return [r, g, b]() {
+		glClearColor(r, g, b, 1.0);
+	};
 }
 
 } //end namespace UI

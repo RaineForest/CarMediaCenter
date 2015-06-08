@@ -3,8 +3,15 @@
 #define __BUTTON_HPP__
 
 #include "UI.hpp"
+#include <functional>
 
 namespace UI {
+
+class Button;
+
+using BtnDrawFunc = std::function<void()>;
+using BtnUpdateFunc = std::function<void(float)>;
+using BtnActionFunc = std::function<void()>;
 
 class Button {
 	public:
@@ -23,19 +30,26 @@ class Button {
 		void setShape(UI_Point2_t* points, int size);
 		void setShape(int ngon, float rot, float rad);
 
-		void setDraw(void (*func)(void));
-		void setUpdate(void (*func)(float));
-		void setAction(void (*func)(void));
+		void setDraw(BtnDrawFunc func);
+		void setUpdate(BtnUpdateFunc func);
+		void setAction(BtnActionFunc func);
 
 	private:
-		void (*draw)(void);
-		void (*update)(float);
-		void (*action)(void);
+		BtnDrawFunc draw;
+		BtnUpdateFunc update;
+		BtnActionFunc action;
 
 		UI_Point2_t* shape;
 		int sides;
 		UI_Point2_t location;
 };
+
+
+/////////////////////////////////////////
+// Predefined styles
+/////////////////////////////////////////
+
+BtnDrawFunc btnSolidColor(float r, float g, float b);
 
 }
 
