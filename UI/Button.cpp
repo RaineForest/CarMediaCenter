@@ -119,9 +119,15 @@ void Button::setAction(BtnActionFunc func) {
 
 ////////////////////////////////////////////////////////////////
 
-BtnDrawFunc btnSolidColor(float r, float g, float b) {
-	return [r, g, b]() {
-		glClearColor(r, g, b, 1.0);
+BtnDrawFunc btnSolidColor(float r, float g, float b, float a = 1.0) {
+	return [r, g, b, a]() {
+		glClearColor(r, g, b, a);
+	};
+}
+
+BtnDrawFunc btnCenterText(char* str) {
+	return [str]() {
+		//TODO: actually implement
 	};
 }
 

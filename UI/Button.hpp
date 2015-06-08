@@ -7,8 +7,6 @@
 
 namespace UI {
 
-class Button;
-
 using BtnDrawFunc = std::function<void()>;
 using BtnUpdateFunc = std::function<void(float)>;
 using BtnActionFunc = std::function<void()>;
@@ -46,10 +44,11 @@ class Button {
 
 
 /////////////////////////////////////////
-// Predefined styles
+// Factories
 /////////////////////////////////////////
 
-BtnDrawFunc btnSolidColor(float r, float g, float b);
+BtnDrawFunc btnColor(float r, float g, float b, float a = 1.0);
+BtnDrawFunc btnCenterText(char* str);
 
 }
 
