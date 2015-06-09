@@ -9,9 +9,9 @@ namespace UI {
 
 using BtnDrawFunc = std::function<void()>;
 using BtnUpdateFunc = std::function<void(float)>;
-using BtnActionFunc = std::function<void()>;
+using BtnActionFunc = std::function<void(Event e)>;
 
-class Button {
+class Button : public Component, public Actionable {
 	public:
 		Button();
 		~Button();
@@ -19,14 +19,6 @@ class Button {
 		void Draw();
 		void Update(float dt);
 		void Action();
-
-		UI_Point2_t getLocation();
-		void setLocation(GLfloat x, GLfloat y);
-		void setLocation(UI_Point2_t* loc);
-
-		void setShape(GLfloat* xvals, GLfloat* yvals, int size);
-		void setShape(UI_Point2_t* points, int size);
-		void setShape(int ngon, float rot, float rad);
 
 		void setDraw(BtnDrawFunc func);
 		void setUpdate(BtnUpdateFunc func);

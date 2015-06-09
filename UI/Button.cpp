@@ -18,32 +18,38 @@ Button::~Button() {
 }
 
 void Button::Draw() {
-	glEnable(GL_STENCIL_TEST);
-	//prepare the stencil
-	glStencilFunc(GL_ALWAYS, 1, 0xFF);
-	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-	glStencilMask(0xFF);
-	//don't write to color or depth
-	glColorMask(GL_FALSE,GL_FALSE,GL_FALSE,GL_FALSE);
-	glDepthMask(GL_FALSE);
-	//draw the stencil area
-	glBegin(GL_POLYGON);
-	for(int i = 0; i < sides; i++) {
-		glVertex2f(shape[i].x, shape[i].y);
-	}
-	glEnd();
-	//turn color and depth back on
-	glColorMask(GL_TRUE,GL_TRUE,GL_TRUE,GL_TRUE);
-	glDepthMask(GL_TRUE);
-	//set new stencil function
-	glStencilFunc(GL_EQUAL, 1, 0xFF);
-	//turn off stencil write
-	glStencilMask(0x00);
+	glPushMatrix();
+		//move to location
+		glTranslatef(location.x, location.y, 0.0);
+		//turn on stencil test
+		glEnable(GL_STENCIL_TEST);
+		//prepare the stencil
+		glStencilFunc(GL_ALWAYS, 1, 0xFF);
+		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+		glStencilMask(0xFF);
+		//don't write to color or depth
+		glColorMask(GL_FALSE,GL_FALSE,GL_FALSE,GL_FALSE);
+		glDepthMask(GL_FALSE);
+		//draw the stencil area
+		glBegin(GL_POLYGON);
+		for(int i = 0; i < sides; i++) {
+			glVertex2f(shape[i].x, shape[i].y);
+		}
+		glEnd();
+		//turn color and depth back on
+		glColorMask(GL_TRUE,GL_TRUE,GL_TRUE,GL_TRUE);
+		glDepthMask(GL_TRUE);
+		//set new stencil function
+		glStencilFunc(GL_EQUAL, 1, 0xFF);
+		//turn off stencil write
+		glStencilMask(0x00);
 
-	//do the stuff
-	draw();
-	
-	glDisable(GL_STENCIL_TEST);
+		//do the stuff
+		draw();
+		
+		//turn off stencil test
+		glDisable(GL_STENCIL_TEST);
+	glPopMatrix();
 }
 
 void Button::Update(float dt) {
@@ -52,7 +58,7 @@ void Button::Update(float dt) {
 
 void Button::Action() {
 	//TODO: on-click animation?
-	//TODO: spawn thread?
+	//spawn thread? - no called from thread
 	action();
 }
 
