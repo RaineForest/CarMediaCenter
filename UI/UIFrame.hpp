@@ -4,8 +4,6 @@
 
 #include <GL/freeglut.h>
 #include "UIUtil.hpp"
-#include <queue>
-#include <thread>
 
 namespace UI {
 
@@ -15,11 +13,6 @@ class UIFrame {
 		~UIFrame();
 
 		show();
-		
-		add
-
-	private:
-		queue<Event> eventQ;
 };
 
 }
