@@ -3,27 +3,32 @@
 #define __EVENT_HPP__
 
 #include <queue>
+#include <mutex>
 #include <thread>
+#include <condition_variable>
 
 namespace UI {
 
 class Event {
+	public:
+		Event(int x, int y);
+
 	protected:
 		int x;
 		int y;
 };
 
-class KeyboardEvent : protected Event {
+class KeyboardEvent : public Event {
 	public:
-		KeyboardEvent();
+		KeyboardEvent(unsigned char keycode, int x, int y);
 
 	protected:
 		unsigned char keycode;
 };
 
-class MouseEvent : protected Event {
+class MouseEvent : public Event {
 	public:
-		MouseEvent();
+		MouseEvent(int button, int state, int x, int y);
 
 	protected:
 		int button;
@@ -38,7 +43,14 @@ class EventDispatcher {
 		void addMouseEvent(int button, int state, int x, int y);
 
 	private:
-		queue<Event*> eventQ;
+		Event* getNextEvent();
+		static void processEvents(EventDispatcher* ed);
+
+		std::queue<Event*> eventQ;
+		std::thread edt;
+		std::unique_lock<std::mutex> queueLock;
+		std::unique_lock<std::mutex> emptyLock;
+		std::condition_variable empty;
 };
 
 }

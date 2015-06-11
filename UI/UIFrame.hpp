@@ -2,17 +2,13 @@
 #ifndef __UIFRAME_HPP__
 #define __UIFRAME_HPP__
 
-#include <GL/freeglut.h>
-#include "UIUtil.hpp"
+#include "UIHierarchy.hpp"
 
 namespace UI {
 
-class UIFrame {
+class UIFrame : protected Container {
 	public:
-		UIFrame();
-		~UIFrame();
-
-		show();
+		UIFrame(int argc, char** argv);
 };
 
 }

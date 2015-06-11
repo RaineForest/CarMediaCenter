@@ -34,12 +34,12 @@ static void display() {
 	glClearStencil(0.0f);
 	glClear(GL_COLOR_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
 
+		glEnable(GL_STENCIL_TEST);
 	glPushMatrix();
+		//turn on stencil test
 		glClear(GL_STENCIL_BUFFER_BIT);
 		//move to location
 		glTranslatef(0.0, 0.0, 0.0);
-		//turn on stencil test
-		glEnable(GL_STENCIL_TEST);
 		//prepare the stencil
 		glStencilFunc(GL_ALWAYS, 1, 0x01);
 		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
@@ -69,21 +69,19 @@ static void display() {
 		glEnd();
 
 		//turn off stencil write
-		glStencilMask(0x00);
+		glStencilMask(~0);
 		//turn off stencil test
-		glDisable(GL_STENCIL_TEST);
 	glPopMatrix();
 
 	glPushMatrix();
+		//turn on stencil test
 		glClear(GL_STENCIL_BUFFER_BIT);
 		//move to location
 		glTranslatef(.425f, .25f, 0.0);
-		//turn on stencil test
-		glEnable(GL_STENCIL_TEST);
 		//prepare the stencil
-		glStencilFunc(GL_ALWAYS, 2, 0x02);
+		glStencilFunc(GL_ALWAYS, 1, 0x01);
 		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-		glStencilMask(0x02);
+		glStencilMask(0x01);
 		//don't write to color or depth
 		glColorMask(GL_FALSE,GL_FALSE,GL_FALSE,GL_FALSE);
 		glDepthMask(GL_FALSE);
@@ -97,7 +95,7 @@ static void display() {
 		glColorMask(GL_TRUE,GL_TRUE,GL_TRUE,GL_TRUE);
 		glDepthMask(GL_TRUE);
 		//set new stencil function
-		glStencilFunc(GL_EQUAL, 2, 0x02);
+		glStencilFunc(GL_EQUAL, 1, 0x01);
 
 		//do the stuff
 		glColor3f(0.0f, 0.0f, 1.0f);
@@ -109,21 +107,19 @@ static void display() {
 		glEnd();
 
 		//turn off stencil write
-		glStencilMask(0x00);
+		glStencilMask(~0);
 		//turn off stencil test
-		glDisable(GL_STENCIL_TEST);
 	glPopMatrix();
 
 	glPushMatrix();
+		//turn on stencil test
 		glClear(GL_STENCIL_BUFFER_BIT);
 		//move to location
 		glTranslatef(0.0f, .5f, 0.0);
-		//turn on stencil test
-		glEnable(GL_STENCIL_TEST);
 		//prepare the stencil
-		glStencilFunc(GL_ALWAYS, 3, 0x03);
+		glStencilFunc(GL_ALWAYS, 1, 0x01);
 		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-		glStencilMask(0x03);
+		glStencilMask(0x01);
 		//don't write to color or depth
 		glColorMask(GL_FALSE,GL_FALSE,GL_FALSE,GL_FALSE);
 		glDepthMask(GL_FALSE);
@@ -137,7 +133,7 @@ static void display() {
 		glColorMask(GL_TRUE,GL_TRUE,GL_TRUE,GL_TRUE);
 		glDepthMask(GL_TRUE);
 		//set new stencil function
-		glStencilFunc(GL_EQUAL, 3, 0x03);
+		glStencilFunc(GL_EQUAL, 1, 0x01);
 
 		//do the stuff
 		glColor3f(1.0f, 0.0f, 0.0f);
@@ -149,10 +145,10 @@ static void display() {
 		glEnd();
 
 		//turn off stencil write
-		glStencilMask(0x00);
+		glStencilMask(~0);
 		//turn off stencil test
-		glDisable(GL_STENCIL_TEST);
 	glPopMatrix();
+	glDisable(GL_STENCIL_TEST);
 
 	glutSwapBuffers();
 }
