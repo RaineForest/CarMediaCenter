@@ -14,30 +14,37 @@ UIFrame::UIFrame(int argc, char** argv) {
 	//initialization stuff
 	glShadeModel(GL_SMOOTH);
 
-	glutDisplayFunc(Draw);
-	glutReshapeFunc([](GLint width, GLint height) {
-		if (height == 0) {
-			height = 1;
-		}
-		GLfloat aspectRatio = (GLfloat) width / (GLfloat) height;
-
-		glViewport(0, 0, width, height);
-		glMatrixMode(GL_PROJECTION); //switch to modify perspective
-		glLoadIdentity();
-		if(width >= height) { //landscape
-			gluOrtho2D(-1.0 * aspectRatio, 1.0 * aspectRatio, -1.0, 1.0);
-		} else { //portrait
-			gluOrtho2D(-1.0, 1.0, -1.0 / aspectRatio, 1.0 / aspectRatio);
-		}
-
-		glMatrixMode(GL_MODELVIEW);
-	});
+	thisInstance = this;
+	glutDisplayFunc(drawCallback);
+	glutReshapeFunc(reshapeCallback);
 	//glutKeyboardFunc(keyCallback);
 	//glutMouseFunc(clickCallback);
 	//glutMotionFunc(moveCallback);
 	//glutIdleFunc(idleCallback);
 
 	glutMainLoop();
+}
+
+void UIFrame::drawCallback() {
+	thisInstance->Draw();
+}
+
+void UIFrame::reshapeCallback(GLint width, GLint height) {
+	if (height == 0) {
+		height = 1;
+	}
+	GLfloat aspectRatio = (GLfloat) width / (GLfloat) height;
+
+	glViewport(0, 0, width, height);
+	glMatrixMode(GL_PROJECTION); //switch to modify perspective
+	glLoadIdentity();
+	if(width >= height) { //landscape
+		gluOrtho2D(-1.0 * aspectRatio, 1.0 * aspectRatio, -1.0, 1.0);
+	} else { //portrait
+		gluOrtho2D(-1.0, 1.0, -1.0 / aspectRatio, 1.0 / aspectRatio);
+	}
+
+	glMatrixMode(GL_MODELVIEW);
 }
 
 }

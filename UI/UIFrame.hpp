@@ -9,6 +9,12 @@ namespace UI {
 class UIFrame : protected Container {
 	public:
 		UIFrame(int argc, char** argv);
+
+	private:
+		static UIFrame* thisInstance;
+
+		static void drawCallback();
+		static void reshapeCallback(GLint width, GLint height);
 };
 
 }
