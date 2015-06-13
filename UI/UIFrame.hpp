@@ -6,15 +6,13 @@
 
 namespace UI {
 
-class UIFrame : protected Container {
+class UIFrame : public Container {
 	public:
-		UIFrame(int argc, char** argv);
+		UIFrame();
+
+		void show(int argc, char** argv, int width, int height, const char* title);
 
 	private:
-		static UIFrame* thisInstance;
-
-		static void drawCallback();
-		static void reshapeCallback(GLint width, GLint height);
 };
 
 }

@@ -4,15 +4,21 @@
 
 namespace UI {
 
-UIFrame::UIFrame(int argc, char** argv) {
+UIFrame* thisInstance;
+static void drawCallback();
+static void reshapeCallback(GLint width, GLint height);
+
+UIFrame::UIFrame() {}
+
+void UIFrame::show(int argc, char** argv, int width, int height, const char* title) {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA);
-	glutInitWindowSize(640, 480);
+	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA|GLUT_STENCIL);
+	glutInitWindowSize(width, height);
 	glutInitWindowPosition(100, 100);
-	glutCreateWindow("CarMediaCenter");
+	glutCreateWindow(title);
 
 	//initialization stuff
-	glShadeModel(GL_SMOOTH);
+	//glShadeModel(GL_SMOOTH);
 
 	thisInstance = this;
 	glutDisplayFunc(drawCallback);
@@ -25,11 +31,17 @@ UIFrame::UIFrame(int argc, char** argv) {
 	glutMainLoop();
 }
 
-void UIFrame::drawCallback() {
+static void drawCallback() {
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearStencil(0.0f);
+	glClear(GL_COLOR_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
+
 	thisInstance->Draw();
+
+	glutSwapBuffers();
 }
 
-void UIFrame::reshapeCallback(GLint width, GLint height) {
+static void reshapeCallback(GLint width, GLint height) {
 	if (height == 0) {
 		height = 1;
 	}

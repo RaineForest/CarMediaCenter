@@ -67,6 +67,7 @@ class Component : public Drawable, public Placeable, public Sizeable {
 class Container : public Drawable, public Placeable {
 	public:
 		virtual void Draw();
+		virtual void Update(float dt);
 
 		void add(Component* c);
 		Component* remove(Component* c);

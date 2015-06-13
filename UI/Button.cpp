@@ -10,6 +10,7 @@ Button::Button() {
 	shape = nullptr;
 	location = {0.0f, 0.0f};
 	sides = 0;
+	this->Polygonal::setSize(1.0f, 1.0f);
 
 	draw = [](){};
 	update = [](float dt){};
@@ -28,6 +29,7 @@ void Button::Draw() {
 	glPushMatrix();
 		//turn on stencil test
 		glEnable(GL_STENCIL_TEST);
+		glClear(GL_STENCIL_BUFFER_BIT);
 		//prepare the stencil
 		glStencilFunc(GL_ALWAYS, 1, 0x01);
 		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);

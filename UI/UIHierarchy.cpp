@@ -101,7 +101,16 @@ void Polygonal::setShape(int ngon, float rot, float rad) {
 
 void Container::Draw() {
 	for(unsigned int i = 0; i < this->components.size(); i++) {
+		glPushMatrix();
+		glTranslatef(this->components[i]->getLocation().x,this->components[i]->getLocation().y,0.0f);
 		this->components[i]->Draw();
+		glPopMatrix();
+	}
+}
+
+void Container::Update(float dt) {
+	for(unsigned int i = 0; i < this->components.size(); i++) {
+		this->components[i]->Update(dt);
 	}
 }
 

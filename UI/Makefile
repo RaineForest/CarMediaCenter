@@ -3,8 +3,8 @@
 
 default: Button.o Event.o UIFrame.o UIHierarchy.o UIUtil.o
 
-test:
-	g++ -std=c++11 -Wall -L/usr/lib/i386-linux-gnu -o test test.cpp -lglut -lGLU -lGL -lm
+test: Button.o Event.o UIFrame.o UIHierarchy.o UIUtil.o
+	g++ -std=c++11 -Wall -o test *.o test.cpp -lglut -lGLU -lGL -lm -lpthread
 
 Button.o: Button.cpp Button.hpp UIHierarchy.hpp UIUtil.hpp
 	g++ -std=c++11 -Wall -c Button.cpp -o Button.o
